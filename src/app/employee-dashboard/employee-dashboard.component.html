@@ -1,0 +1,62 @@
+<nav class="navbar navbar-light " style="color:whitesmoke;">
+    <div class="container-fluid">
+        <h2 style="color:rgb(199, 211, 223);">LOGIN DASHBOARD</h2>
+        <div class="d-flex">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Login</button>
+        </div>
+    </div>
+</nav>
+<table class="table mt-3">
+
+    <thead>
+        <tr>
+            <th>S.NO</th>
+            <th scope="col">EMAIL</th>
+            <th scope="col">PASSWORD</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let row of employeeData">
+            <td>{{row.id}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.password}}</td>
+            <td> 
+                <button class="btn btn-primary" (click)="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>&nbsp;
+                <button class="btn btn-danger" (click)="deleteEmployee(row.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="formvalue">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">EMAIL</label>
+                    <input type="text" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">PASSWORD</label>
+                    <input type="text" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Enter password">
+                </div>
+               
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancel"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="postEmployeeDetails()">Add</button>
+          <button type="button" class="btn btn-primary" (click)="updateEmployeeDetails()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
